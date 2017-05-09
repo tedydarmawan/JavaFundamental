@@ -188,8 +188,8 @@ public class Distributor{
   String alamat;
   long bankGaransi;
   
-  void show(){
-    System.out.println(kode + " " + nama + " " + alamat + " " + bankGaransi);
+  void showNama(){
+    System.out.println("Nama: " + nama);
   }
 }
 ```
@@ -200,8 +200,9 @@ class MyClass{
   public static void main(String[] args){
     Distributor d1 = new Distributor();
     Distributor d2 = new Distributor();
+    
     d1.nama = "Maju Makmur Mandiri (3M)";
-    d2.show();
+    d1.showNama();
   }
 }
 ```
@@ -283,7 +284,7 @@ public class Distributor{
   
   // konstruktor
   Distributor(){
-    nama = "DEMO";
+    nama = "Demo";
   }
 }
 ```
@@ -305,12 +306,16 @@ public class Distributor{
   
   // konstruktor
   Distributor(){
-    nama = "DEMO";
+    nama = "Demo";
   }
   
   // konstruktor
   Distributor(String nama){
     this.nama = nama;
+  }
+  
+  public String getNama(){
+    return nama;
   }
 }
 ```
@@ -319,11 +324,16 @@ Konstruktor dipanggil ketika membuat sebuah objek dengan menggunakan keyword new
 ``` java
 public class MyClass{
   public static void main(String[] args){
-    Distributor dist = new Distributor("Maju Makmur Mandiri (3M)");
-    Distributor dist2 = new Distributor();
+    Distributor d1 = new Distributor();
+    Distributor d2 = new Distributor("Maju Makmur Mandiri (3M)");
     
-    // atribut nama pada objek dist = Maju Makmur Mandiri (3M)
-    // atribut nama pada objek dist2 = DEMO
+    System.out.println(d1.getNama());
+    System.out.println(d2.getNama());
+    
+    /* Output
+       Demo
+       Maju Makmur Mandiri (3M)
+    */
   }
 }
 ```
@@ -348,6 +358,7 @@ public class MyClass{
   public static void main(String[] args){
     Counter c1 = new Counter();
     Counter c2 = new Counter();
+    
     System.out.println(Counter.COUNT);
     System.out.println(c1.COUNT2);
     System.out.println(c2.COUNT2);
@@ -369,7 +380,7 @@ class MyClass{
   public static final double PI = 3.14;
   
   public static void main(String[] args){
-    Sysem.out.println(PI);
+    System.out.println(PI);
   }
 }
 // Variabel PI adalah konstanta, jika mencoba memberikan nilai baru ke variabel PI maka akan menyebabkan error.
