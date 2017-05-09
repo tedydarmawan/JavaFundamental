@@ -5,13 +5,130 @@
 - Overriding & Overloading
 - Kelas Abstrak
 - Interface
-- Casting
-- Downcasting
+- Type Casting
 - Kelas Anonymous
 - Inner Kelas
 - Method equals()
 - Enum
 - Java API
+
+## Interface
+Interface merupakan kelas abstrak yang hanya mempunyai method abstrak dan variabel konstan.
+Beberapa spesifikasi mengenai interface:
+- Didefinisikan menggunakan keyword interface
+- Hanya berisi variabel dengan keyword static final (konstan)
+- Tidak bisa berisi konstruktor karena interface tidak dapat diinstantiasi
+- Interface dapat mengextend interface yang lain
+- Sebuah kelas dapat mengimplementasikan beberapa interface (tak terhingga)
+
+``` java
+interface Binatang {
+	public static final String BINATANG_KODE = "B";
+	
+	public void suara();
+	public void info();
+}
+```
+
+interface mempunyai properti berikut ini:
+- interface adalah abstrak, sehingga tidak perlu menggunakan keyword abstract untuk mendeklarasikan sebuah interface.
+- Setiap method pada interface merupakan abstrak, sehingga tidak perlu menggunakan keyword abstract untuk mendeklarasikan method.
+- Method pada interface memiliki access modifier public
+
+> Sebuah kelas hanya dapat mewarisi 1 super-kelas, tetapi dapat mengimplementasikan beberapa interface.
+``` java
+class Kucing implements Binatang {
+	
+	@Override
+	public void suara() {
+		System.out.println("Meong...");
+	}
+
+	@Override
+	public void info() {
+		System.out.println("Kucing");
+	}
+
+}
+```
+
+> Ketika mengimplementasikan sebuah interface, maka semua method pada interface tersebut harus di override.
+
+## Type Casting
+Type Casting merupakan proses memberikan nilai dari suatu tipe ke variabel yang memiliki tipe yang berbeda.
+``` java
+int a = (int) 3.14;
+System.out.println(a);
+// Output 3
+
+double b = 42.571;
+int c = (int) b;
+System.out.println(c);
+// Output 42
+```
+
+Untuk kelas ada 2 jenis tipe casting yakni downcasting dan upcasting.
+
+#### Upcasting
+Upcasting adalah proses casting suatu instance dari sub-kelas ke super-kelas.
+``` java
+Binatang b = new Kucing();
+```
+
+#### Downcasting
+Downcasting adalah proses casting suatu objek dari super-kelas ke sub-kelas.
+``` java
+Binatang b = new Kucing();
+
+if(b instanceof Kucing){
+  ((Kucing)b).suara();
+}
+```
+
+Proses upcasting dari variabel tipe Kucing ke tipe Binatang dilakukan secara otomatis, sedangkan proses downcasting dari tipe Binatang ke tipe Kucing dilakukan secara manual.
+
+## Kelas Anonymous
+Kelas anonymous merupakan cara cepat untuk melakukan extend suatu kelas.
+
+``` java
+public class Mesin {
+	
+	public void mulai(){
+		System.out.println("Mulai...");
+	}
+	
+}
+```
+
+Pada saat membuat objek Mesin, method mulai() dapat diubah secara cepat
+``` java
+public static void main(String[] args){
+	Mesin m1 = new Mesin(){
+		@Override
+		public void mulai() {
+			System.out.println("Berhasil di override...");
+		}
+	};
+	m1.mulai();
+}
+// Output "Berhasil di override"
+```
+
+Hasil modifikasi hanya berlaku untuk objek yang melakukan kelas anonymous dan tidak berlaku untuk kelas yang dioverridenya, sehingga apabila dibuat objek baru dari kelas tersebut maka pernyataannya akan berubah seperti awal.
+``` java
+public static void main(String[] args){
+	Mesin m1 = new Mesin(){
+		@Override
+		public void mulai() {
+			System.out.println("Berhasil di override...");
+		}
+	};
+	m1.mulai();
+
+	Mesin m2 = new Mesin();
+	m2.mulai();
+}
+```
 
 ## Inner Class
 Java mendukung pembuatan kelas didalam kelas (inner class) atau dengan kata lain sebuah kelas bisa menjadi anggota dari kelas lain. 
