@@ -94,5 +94,48 @@ int div(int a, int b) throws ArithmeticException, IndexOutOfBoundsException{
 }
 ```
 
+## Thread
+Java merupakan bahasa pemrograman multithreading, yang berarti program Java dapat mengoptimalkan resource yang ada dengan menjalankan dua atau lebih komponen secara bersamaan dan setiap komponen dapat menangani tugas yang berbeda.
 
+Life cycle dari Thread
 
+![alt text][thread_lifecycle]
+
+Ada dua cara untuk membuat thread
+
+__1. Extend kelas Thread__
+
+Melakukan inheritance pada kelas Thread, override method run() dan menuliskan kode/fungsi di method run().
+``` java
+class Loader extends Thread{
+  public void run(){
+    System.out.println("Hello");
+  }
+}
+
+class MyClass{
+  public static void main(String[] args){
+    Loader obj = new Loader();
+    obj.start();
+  }
+}
+```
+> Setiap thread Java diprioritaskan untuk membantu sistem operasi menentukan urutan penjadwalan thread. Range prioritas dimulai dari 1 hingga 10, dan default prioritas thread adalah 5. Untuk mengatur prioritas thread dapat menggunakan method setPriority().
+
+__2. Implement interface Runnable__
+``` java
+class Loader implements Runnable{
+  public void run(){
+    System.out.println("Hello");
+  }
+}
+
+class MyClass{
+  public static void main(String[] args){
+    Thread t = new Thread(new Loader());
+    t.start();
+  }
+}
+```
+
+[thread_lifecycle]: https://api.sololearn.com/DownloadFile?id=2880 "Thread Lifecycle"
