@@ -2,7 +2,7 @@
 - Enkapsulasi
 - Inheritance
 - Polymorphism
-- Overriding & Overloading
+- Override & Overload
 - Kelas Abstrak
 - Interface
 - Type Casting
@@ -11,6 +11,210 @@
 - Method equals()
 - Enum
 - Java API
+
+## Enkapsulasi
+Ada 4 konsep dalam pemrograman berorientasi objek yakni 
+1. Enkapsulasi
+2. Inheritance
+3. Polymorphism
+4. Abstraksi
+
+Ide dibalik enkapsulasi adalah untuk memastikan bahwa detail implementasi tidak terlihat oleh user. Variabel dari suatu kelas akan tersembunyi dari kelas yang lain, cara akses variabel tersebut hanya melalui method di kelas tersebut. Hal ini disebut penyembunyian data (__data hiding__).
+
+Untuk melakukan enkapsulasi di Java, deklarasikan variabel dalam suatu kelas dengan akses modifier private dan sediakan method public getter dan setter untuk memodifikasi dan melihat nilai dari variabel tersebut.
+
+``` java
+class BankAccount{
+	private double balance = 0;
+	
+	public void deposit(double x){
+		if(x > 0){
+			balance += x;
+		}
+	}
+}
+```
+
+Implementasi diatas menyembunyikan variabel __balance__ dan menyediakan akses ke variabel tersebut melalui method deposit yang melakukan validasi nilai yang akan dideposit sebelum diupdate ke variabel.
+
+Enkapsulasi menyediakan beberapa keuntungan berikut ini:
+- Mengontrol cara data diakses atau dimodifikasi
+- Lebih fleksibel dan mudah untuk mengubah data
+- Kemampuan untuk mengubah suatu bagian kode tanpa mempengaruhi bagian yang lain
+
+## Inheritance
+Inheritance adalah suatu proses yang membuat suatu kelas dapat memperoleh properti (method dan variabel) dari kelas yang lain. Kelas yang diwarisi properti dari kelas lain disebut sub-kelas (derived class atau child class). Sedangkan kelas yang mewarisi properti ke kelas lain disebut super-kelas (base class atau parent class).
+
+Untuk melakukan inheritance maka digunakan keyword __extends__.
+``` java
+class Kucing extends Binatang{
+	// beberapa kode
+}
+// Kucing merupakan sub-kelas dan Binatang merupakan super-kelas
+```
+
+Ketika sub-kelas diwarisi oleh super-kelas, maka sub-kelas tersebut diwarisi semua variabel dan method yang tidak memiliki akses modifier private dari kelas super-kelas.
+``` java
+class Binatang{
+	protected int kaki;
+	public void makan(){
+		System.out.println("Binatang makan");
+	}
+}
+
+class Kucing extends Binatang{
+	// Konstruktor
+	Kucing(){
+		kaki = 4;
+	}
+}
+```
+
+Dari kode diatas dapat dilihat bahwa kelas Kucing diwarisi variabel kaki dari kelas Binatang.
+``` java
+class MyClass{
+	
+	public static void main(String[] args){
+		Kucing k = new Kucing();
+		k.makan();
+	}
+	
+}
+```
+
+Konstruktor bukan merupakan method yang akan diwariskan ke sub-kelas. Konstruktor dari super-kelas akan dipanggil ketika sub-kelas di instantiasi.
+``` java
+class Binatang{
+	Binatang(){
+		System.out.println("Binatang");
+	}
+}
+
+class Kucing extends Binatang{
+	Kucing(){
+		System.out.println("Kucing");
+	}
+}
+
+class MyClass{
+	public static void main(String[] args){
+		Kucing k = new Kucing();
+	}
+}
+
+/* Output
+Binatang
+Kucing
+*/
+```
+
+## Polymorphism
+Polymorphism merujuk pada ide "Mempunyai banyak bentuk", ini terjadi ketika adanya hirarki antara kelas yang terhubung satu sama lain melalui inheritance. Ketika suatu method dipanggil maka akan berbeda hasilnya, tergantung pada objek mana yang memanggil method tersebut.
+``` java
+class Binatang{
+	public void suara(){
+		System.out.println("Hmm...");
+	}
+}
+
+class Kucing extends Binatang{
+	public void suara(){
+		System.out.println("Meong...");
+	}
+}
+
+class Anjing extends Binatang{
+	public void suara(){
+		System.out.println("Wooof...");
+	}
+}
+```
+
+Dikarenakan semua objek Kucing dan Anjing merupakan objek Binatang, maka dapat dilakukan hal berikut ini:
+``` java
+public static void main(String[] args){
+	Binatang a = new Kucing();
+	Binatang b = new Anjing();
+	
+	a.suara();
+	// Output "Meong..."
+	
+	b.suara();
+	// Output "Wooof..."
+}
+```
+
+## Override & Overload
+
+#### Override
+Override adalah proses mengubah detail suatu method yang diperoleh sub-kelas dari super-kelas (inheritance).
+
+``` java
+class Binatang{
+	public void suara(){
+		System.out.println("Hmm...");
+	}
+}
+
+class Kucing extends Binatang{
+	public void suara(){
+		System.out.println("Meong...");
+	}
+}
+```
+
+Dari contoh kode diatas, kelas Kucing melakukan override method suara() dari kelas Binatang.
+
+Aturan untuk melakukan Override Method:
+- Method harus memiliki tipe kembalian dan argumen yang sama
+- Level akses method yang dioverride tidak bisa lebih dibatasi (jika level akses method di super-kelas adalah public, maka pada saat override method tersebut tidak bisa diubah menjadi private ataupun protected)
+- Method yang dideklarasikan final atau static tidak bisa dioverride
+- Jika suatu method tidak bisa diwariskan maka method tersebut tidak bisa dioverride
+- Konstruktor tidak bisa dioverride
+
+#### Overload
+Method memiliki nama yang sama tetapi berbeda parameter, hal ini disebut overload. Hal ini akan sangat berguna ketika membutuhkan method yang memiliki fungsi yang sama tapi berbeda parameter.
+
+``` java
+int max(int a, int b){
+	if(a > b){
+		return a;
+	}else{
+		return b;
+	}
+}
+
+double max(double a, double b){
+	if(a > b){
+		return a;
+	}else{
+		return b;
+	}
+}
+```
+
+## Kelas Abstrak
+Data abstraksi adalah suatu konsep yang hanya menyediakan informasi tanpa melibatkan detail dari informasi tersebut. Contoh sederhananya seperti buku. Ketika mendengar judul suatu buku, maka informasi atau ide mengenai buku tersebut akan diketahui tetapi detail dari jumlah halaman, warna dan ukuran buku tersebut tidak diketahui.
+
+Di Java, jenis abstraksi ada 2 yakni kelas abstrak dan interface.
+Kelas abstrak didefinisikan dengana keyword __abstract__.
+- Kelas abstrak tidak dapat diinstantiasi atau dibuat objek dari kelas tersebut
+- Untuk menggunakan kelas abstrak maka harus melakukan inheritance dari kelas lain
+- Method pada kelas abstrak harus didefinisikan sebagai method abstrak juga
+
+> Method abstrak adalah suatu method yang dideklarasikan tanpa detail implementasi, contoh: __abstract void suara();__
+``` java
+abstract class Binatang{
+	int kaki = 0;
+	abstract void suara();
+}
+
+class Kucing extends Binatang{
+	public void suara(){
+		System.out.println("Meong...");
+	}
+}
+```
 
 ## Interface
 Interface merupakan kelas abstrak yang hanya mempunyai method abstrak dan variabel konstan.
@@ -43,7 +247,7 @@ class Kucing implements Binatang {
 	public void suara() {
 		System.out.println("Meong...");
 	}
-
+	
 	@Override
 	public void info() {
 		System.out.println("Kucing");
