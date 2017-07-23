@@ -4,14 +4,6 @@
 - Thread
 - Runtime vs. Checked Exception
 - ArrayList
-- LinkedList
-- HashMap
-- Sets
-- Sorting List
-- Iterator
-- File
-- Membaca File
-- Menulis & Membuat File
 
 ## Exception Handling
 
@@ -139,3 +131,14 @@ class MyClass{
 ```
 
 [thread_lifecycle]: https://api.sololearn.com/DownloadFile?id=2880 "Thread Lifecycle"
+
+
+## Runtime vs. Checked Exception
+Ada 2 macam tipe exception, __checked__ dan __unchecked__ (runtime). Perbedaan utamanya adalah exception checked akan dicek pada saat compile, sedangkan exception unchecked dicek pada saat runtime.
+
+## ArrayList
+Java API menyediakan kelas khusus untuk menyimpan dan memanipulasi kumpulan objek yakni ArrayList. Perbedaan Arraylist dengan array biasa pada Java adalah array panjangnya fix sesuai dengan nilai yang diberikan pada saat inisialisasi. Sedangkan ArrayList panjangnya dapat berubah-ubah secara otomatis.
+
+``` java
+ArrayList<String> warna = new ArrayList<String>();
+```
