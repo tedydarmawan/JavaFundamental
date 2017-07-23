@@ -153,3 +153,50 @@ switch(hari){
 }
 // Output: Rabu
 ```
+
+## Perulangan while
+Loop / Perulangan digunakan untuk mengeksekusi suatu logika secara berulang.
+Perulangan while akan mengeksekusi suatu logika secara berulang selama suatu kondisi yang diberikan adalah true.
+``` java
+int x = 3;
+
+while(x>0){
+  System.out.println(x);
+  x--;
+}
+/*
+Output
+3
+2
+1
+*/
+```
+## Perulangan for
+``` java
+for(int x = 1; x<=5; x++){
+  System.out.println(x);
+}
+/*
+Output
+1
+2
+3
+4
+5
+*/
+```
+
+## Perulangan do while
+Perulangan do while serupa dengan perulangan while, perbedaannya adalah perulangan do while akan melakukan perulangan minimal 1 kali.
+``` java
+do{
+  System.out.println(x);
+  x++;
+}while(x < 5);
+/*
+1
+2
+3
+4
+*/
+```
