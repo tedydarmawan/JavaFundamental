@@ -428,7 +428,7 @@ public static void main(String[] args){
   System.out.println(b1.equals(b2));
 }
 // Output true
-``` java
+```
 
 ## Enum
 Enum merupakan tipe khusus yang digunakan untuk mendefinisikan kumpulan nilai konstan.
