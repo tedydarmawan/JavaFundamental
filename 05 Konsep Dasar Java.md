@@ -4,6 +4,7 @@
 - Operator Primitif
 - _Increment & Decrement_
 - String
+- Membaca Input User dari Console
 
 ## Komentar
 Tujuan dari adanya komentar pada kode adalah untuk menjelaskan apa yang dilakukan oleh kode tersebut. 
@@ -114,4 +115,14 @@ namaDepan = "System";
 namaBelakang = "Support";
 System.out.println("Divisi " + namaDepan + " " + namaBelakang);
 // Output: Divisi System Support
+```
+
+## Membaca Input User dari Console
+Kelas Scanner digunakan untuk membaca input user dari console.
+``` java
+public static void main(String[] args){
+  Scanner s = new Scanner(System.in);
+  String kata = s.nextLine();
+  System.out.println("Data yang diinput: "+ kata);
+}
 ```
