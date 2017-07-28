@@ -1,6 +1,5 @@
 ## Outline
 - Exception Handling
-- Multiple Exception
 - Thread
 - Runtime vs. Checked Exception
 - Tipe Collection
