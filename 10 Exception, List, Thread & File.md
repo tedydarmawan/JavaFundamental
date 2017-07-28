@@ -3,7 +3,12 @@
 - Multiple Exception
 - Thread
 - Runtime vs. Checked Exception
+- Tipe Collection
 - ArrayList
+- LinkedList
+- HashMap
+- Set
+- Sorting List
 
 ## Exception Handling
 
@@ -136,9 +141,135 @@ class MyClass{
 ## Runtime vs. Checked Exception
 Ada 2 macam tipe exception, __checked__ dan __unchecked__ (runtime). Perbedaan utamanya adalah exception checked akan dicek pada saat compile, sedangkan exception unchecked dicek pada saat runtime.
 
+## Tipe Collection
+Java memiliki beberapa tipe collection untuk menyimpan kumpulan data yaitu:
+- List
+- Map
+- Set
+
 ## ArrayList
-Java API menyediakan kelas khusus untuk menyimpan dan memanipulasi kumpulan objek yakni ArrayList. Perbedaan Arraylist dengan array biasa pada Java adalah array panjangnya fix sesuai dengan nilai yang diberikan pada saat inisialisasi. Sedangkan ArrayList panjangnya dapat berubah-ubah secara otomatis.
+Java API menyediakan kelas khusus untuk menyimpan dan memanipulasi kumpulan objek yakni ArrayList. Perbedaan Arraylist dengan array pada Java adalah array panjangnya statis sesuai dengan nilai yang diberikan pada saat inisialisasi sedangkan ArrayList panjangnya dinamis atau dapat berubah-ubah.
+
+ArrayList akan menyimpan objek, oleh karena itu tipe yang harus dispesifikasikan harus tipe kelas. Contoh: tipe data int tidak bisa dijadikan objek pada ArrayList melainkan harus menggunakan tipe kelasnya yakni Integer, contoh lainnya seperti Double untuk double, Long untuk long dan lainnya.
 
 ``` java
 ArrayList<String> warna = new ArrayList<String>();
 ```
+
+Kapasitas awal dari ArrayList dapat didefinisikan dengan cara berikut ini
+```java
+ArrayList<String> warna = new ArrayList<String>(3);
+
+```
+
+Berikut ini beberapa method yang sering digunakan pada ArrayList
+- add(objek), digunakan untuk menambahkan objek pada ArrayList
+- remove(objek) atau remove(index), digunakan untu menghapus objek pada ArrayList
+- get(index), digunakan untuk mengakses objek pada ArrayList
+
+``` java
+//Membuat dan inisialisasi objek ArrayList
+ArrayList<String> warna = new ArrayList<String>();
+
+//Menambahkan objek ArrayList
+warna.add("Merah");
+warna.add("Kuning");
+
+//Mengakses objek ArrayList
+warna.get(0);
+
+//Menghapus objek ArrayList
+warna.remove("Merah");
+```
+
+## LinkedList
+LinkedList memiliki sintaks yang mirip dengan ArrayList.
+Untuk mendeklarasikan LinkedList tinggal ganti ArrayList dengan LinkedList. Berbeda halnya dengan ArrayList, kapasitas awal dari LinkedList tidak dapat didefinisikan.
+
+Berikut ini beberapa method yang sering digunakan pada LinkedList
+- add(objek), digunakan untuk menambahkan objek pada LinkedList
+- remove(objek) atau remove(index), digunakan untu menghapus objek pada LinkedList
+- get(index), digunakan untuk mengakses objek pada LinkedList
+
+``` java
+//Membuat dan inisialisasi objek LinkedList
+LinkedList<String> warna = new LinkedList<String>();
+
+//Menambahkan objek LinkedList
+warna.add("Merah");
+warna.add("Kuning");
+warna.add("Hijau");
+
+//Mengakses objek LinkedList
+warna.get(0);
+
+//Menghapus objek LinkedList menggunakan index
+warna.remove(0);
+
+//Menghapus objek LinkedList menggunakan objek
+warna.remove("Kuning");
+```
+
+Perbedaan penting diantara LinkedList dan ArrayList adalah cara mereka menyimpan objek.
+- ArrayList lebih baik digunakan untuk menyimpan dan mengakses data, hal ini mirip dengan array normal
+- LinkedList lebih baik digunakan untuk memanipulasi data seperti insert dan delete
+
+## HashMap
+Array dan List digunakan untuk menyimpan kumpulan data yang terurut dengan setiap elemen memiliki sebuah index integer.
+HashMap digunakan untuk menyimpan kumpulan data sebagai pasangan key dan value. Objek pertama digunakan sebagai sebuah key(index) dan objek lainnya digunakan sebagai value.
+
+Berikut ini beberapa method yang sering digunakan pada HashMap
+- put(key, value), digunakan menyimpan objek pada HashMap
+- remove(key), digunakan untuk menghapus objek pada HashMap
+- get(key), digunakan untuk mengakses objek pada HashMap
+- containsKey(key), digunakan untuk mengecek apakah ada key tersebut pada HashMap
+- containsValue(value), digunakan untuk mengecek apakah ada value tersebut pada HashMap
+
+``` java
+HashMap<String, Integer> nilaiMatematika = new HashMap<String, Integer>();
+ipk.put("Mahasiswa 1", 100);
+ipk.put("Mahasiswa 2", 89);
+ipk.put("Mahasiswa 3", 85);
+
+ipk.get("Mahasiswa 2"); //Output 89
+
+ipk.remove("Mahasiswa 2");
+```
+HashMap tidak dapat berisi duplikat key. Jika menambahkan item baru dengan key yang sama maka akan menimpah/overwrite elemen lama.
+Jika mencoba mengakses key yang tidak ada pada HashMap makan akan dikembalikan / return nilai null.
+
+## Set
+Set adalah kumpulan data yang tidak bisa mempunyai duplikat elemen. Salah satu contoh implementasi dari Set adalah HashSet.
+HashSet tidak secara otomatis mengatur urutan elemen sesuai dengan data yang ditambahkan.
+``` java
+HashSet<String> set = new HashSet<String>();
+set.add("A");
+set.add("B");
+set.add("C");
+```
+### Apa itu Hashing?
+Sebuah table hash menyimpan informasi melalui mekanisme yang disebut hashing dimana konten yang dijadikan kunci dan digunakan untuk menentukan nilai unik yang disebut hash code. sehingga, pada dasarnya setiap elemen pada HashSet berkaitan dengan masing-masing hash code uniknya.
+
+## Sorting List
+Java API menyediakan kelas Collections untuk memanipulasi data pada tipe Collection.
+Salah satu method yang popular digunakan adalah sort() yang berfungsi untuk mengurutkan data pada tipe Collection. Method-method yang ada pada kelas Collections adalah static sehingga tidak perlu terlebih dahulu membuat objek untuk memanggil method-method tersebut.
+``` java
+ArrayList<String> binatang = new ArrayList<String>();
+binatang.add("Harimau");
+binatang.add("Kucing");
+binatang.add("Gajah");
+binatang.add("Ular");
+binatang.add("Anjing");
+
+Collections.sort(binatang);
+
+System.out.println(binatang);
+//Output: [Anjing, Gajah, Harimau, Kucing, Ular]
+```
+Method lainnya yang bermanfaat pada kelas Collection adalah:
+-max(Collection c), mengembalikan nilai maksimum elemen yang terdapat pada collection
+-min(Collection c), mengembalikan nilai minimum elemen yang terdapat pada collection
+-reverse(List list), Membalikan urutan elemen-elemen pada List
+-shuffle(List list), Mengacak-acak secara random elemen-elemen pada List
+
+
