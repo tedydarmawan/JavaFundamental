@@ -9,6 +9,8 @@
 - HashMap
 - Set
 - Sorting List
+- Iterators
+- File
 
 ## Exception Handling
 
@@ -267,9 +269,79 @@ System.out.println(binatang);
 //Output: [Anjing, Gajah, Harimau, Kucing, Ular]
 ```
 Method lainnya yang bermanfaat pada kelas Collection adalah:
--max(Collection c), mengembalikan nilai maksimum elemen yang terdapat pada collection
--min(Collection c), mengembalikan nilai minimum elemen yang terdapat pada collection
--reverse(List list), Membalikan urutan elemen-elemen pada List
--shuffle(List list), Mengacak-acak secara random elemen-elemen pada List
+- max(Collection c), mengembalikan nilai maksimum elemen yang terdapat pada collection
+- min(Collection c), mengembalikan nilai minimum elemen yang terdapat pada collection
+- reverse(List list), membalikan urutan elemen-elemen pada List
+- shuffle(List list), mengacak-acak secara random elemen-elemen pada List
 
+## Iterators
+Sebuah Iterator adalah sebuah objek yang membuat sebuah perulangan melalui collection untuk mendapatkan atau menghapus elemen dari collection. Setiap kelas collection menyediakan method iterator() yang akan mengembalikan nilai awal perulangan dari collection, satu elemen setiap waktu.
 
+Kelas Iterator menyediakan method-method berikut ini:
+- hasNext(), mengembalikan nilai true jika minimal ada satu elemen didalam collection
+- next(), mengembalikan objek dan menambah 1 nilai ke perulangan selanjutnya
+- remove(), menghapus objek terakhir yang diperoleh dari method next()
+
+``` java
+LinkedList<String> binatang = new LinkedList<String>();
+binatang.add("Harimau");
+binatang.add("Kucing");
+binatang.add("Gajah");
+binatang.add("Ular");
+binatang.add("Anjing");
+
+Iterator<String> it = binatang.iterator();
+while(it.hasNext()){
+  System.out.println(it.next());
+}
+/*
+Output:
+Harimau
+Kucing
+Gajah
+Ular
+Anjing
+*/
+```
+## File
+Pada package java.io terdapat kelas File yang dapat digunakan untuk menangani file-file yang terkait dengan program Java. Pada saat membuat objek File masukkan path dari file yang akan dibaca oleh program Java.
+``` java
+File file = new File("C:\\data\\contoh.txt");
+```
+
+Gunakan method exists() untuk mengecek apakah file ada atau tidak dan methode getName() untuk mendapatkan nama dari file.
+``` java
+File file = new File("C:\\data\\contoh.txt");
+if(file.exists()){
+  System.out.println(file.getName() + " ada!");
+}else{
+  System.out.println(file.getName() + " tidak ada!");
+}
+```
+
+### Membaca File
+File berguna untuk menyimpan dan mengakses data secara eksternal. Salah satu cara paling sederhana untuk membaca file adalah dengan menggunakan kelas Scanner.
+``` java
+try{
+  File file = new File("C:\\data\\contoh.txt");
+  Scanner s = new Scanner(file);
+}catch(Exception e){
+
+}
+// try catch digunakan karena ada kemungkinan file tidak ada
+```
+
+Kelas scanner extends Iterator oleh karena itu kelas scanner dapat menggunakan semua method yang ada pada kelas Iterator.
+``` java
+try{
+  File file = new File("C:\\data\\contoh.txt");
+  Scanner s = new Scanner(file);
+  while(s.hasNext()){
+    System.out.println(s.next());
+  }
+  s.close();
+}catch(Exception e){
+  System.out.println("Error");
+}
+```
+Best practice: Disarankan untuk memanggil method close() setelah selesai membaca file.
