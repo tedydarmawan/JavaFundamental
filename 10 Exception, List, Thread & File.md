@@ -345,3 +345,18 @@ try{
 }
 ```
 Best practice: Disarankan untuk memanggil method close() setelah selesai membaca file.
+
+### Membuat File
+Kelas Formatter digunakan untuk membuat content dan menuliskannya ke sebuah file.
+``` java
+try{
+  Formatter f = new Formatter("D:\\test.txt");
+  f.format("%s %s %s", "1", "Tedy", "Darmawan \r\n");
+  f.close();
+}catch(Exception e){
+  System.out.println("Error");
+}
+```
+
+%s adalah string yang akan digantikan oleh parameter sesuai dengan urutannya.
+\r\n adalah simbol yang digunakan di Windows untuk baris baru.
