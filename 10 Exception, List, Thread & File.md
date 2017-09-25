@@ -227,7 +227,7 @@ Berikut ini beberapa method yang sering digunakan pada HashMap
 - containsValue(value), digunakan untuk mengecek apakah ada value tersebut pada HashMap
 
 ``` java
-HashMap<String, Integer> nilaiMatematika = new HashMap<String, Integer>();
+HashMap<String, Integer> ipk = new HashMap<String, Integer>();
 ipk.put("Mahasiswa 1", 100);
 ipk.put("Mahasiswa 2", 89);
 ipk.put("Mahasiswa 3", 85);
